@@ -1,0 +1,12 @@
+{
+  "onboarding": {
+    "welcome": "Welcome to App BiT!",
+    "description": "Your Personal Guidance Web App.",
+    "next_button": "Next Step"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading..."
+  }
+}

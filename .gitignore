@@ -29,3 +29,6 @@ data/tensor_sequencias.csv
 # SO
 .DS_Store
 Thumbs.db
+
+# Ignorar pastas de automação e logs de modernização
+.github/modernize/

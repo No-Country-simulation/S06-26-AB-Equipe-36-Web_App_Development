@@ -11,7 +11,7 @@ import { WavesBackground } from "./WavesBackground";
   return { paisesDisponiveis, estadosDisponiveis, cidadesDisponiveis };
 };
 
-export default function App() {
+ export default function App() {
     const [stage, setStage] = useState(0);
     const [form, setForm] = useState({
 
@@ -34,13 +34,29 @@ export default function App() {
   });
 
   useEffect(() => {
-    const t1 = setTimeout(() => setStage(1), 2200);
-    const t2 = setTimeout(() => setStage(2), 5400);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, []);
+      if (stage === 0) {
+      const t1 = setTimeout(() => setStage(1), 2200);
+      return () => clearTimeout(t1);
+    }
+
+    if (stage === 1) {
+      const t2 = setTimeout(() => setStage(2), 3200);
+      return () => clearTimeout(t2);
+    }
+
+    // --- NOVA LÓGICA DE TRANSIÇÃO PÓS-CADASTRO (PASSO 2) ---
+    if (stage === 5) {
+      // Exibe a frase "Muito bem!" por 2.5 segundos e avança para a próxima
+      const t3 = setTimeout(() => setStage(6), 2500);
+      return () => clearTimeout(t3);
+    }
+    
+    if (stage === 6) {
+      // Exibe a frase "Agora vamos começar..." por 3 segundos e abre as perguntas de saúde
+      const t4 = setTimeout(() => setStage(7), 3000);
+      return () => clearTimeout(t4);
+    }
+  }, [stage]); // Adicionado o [stage] aqui para que o React perceba quando mudamos de etapa!
 
   const handleChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const val = e.target.value;
@@ -83,7 +99,7 @@ export default function App() {
      <style>{` @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap');
   
        .inp::placeholder { color: #c4b8a8; }
-       .inp option { background: #2a1a0d; color: #e8e0d5; }
+       .inp option { background: #5a4a3a; color: #e8e0d5; }
   
   /* --- CUSTOMIZAÇÃO DO CALENDÁRIO NATIVO (POP-UP) --- */
   /* Força o navegador a adotar a paleta escura padrão para a caixinha flutuante */
@@ -310,11 +326,111 @@ export default function App() {
             </div>
           </div>
 
-          <button className="btn" style={{ marginTop: 32 }} onClick={() => console.log("Formulário Completo Enviado:", form)}>
-            Concluir Cadastro
-          </button>
+          <button className="btn" style={{ marginTop: 32 }} onClick={() => setStage(5)}> Concluir Cadastro </button>
         </div>
       </div>
+   
+   {/* Stage 5: Frase 1 - Transição suave */}
+<div className="stage" style={{ opacity: stage === 5 ? 1 : 0, zIndex: stage === 5 ? 5 : 1, pointerEvents: "none" }}>
+  <h1 className="ft" style={{ fontSize: "clamp(2rem, 6vw, 3rem)", margin: 0 }}>
+    Muito bem!
+  </h1>
+  <p className="fs" style={{ marginTop: 12 }}>Seu perfil foi criado com sucesso.</p>
+</div>
+
+{/* Stage 6: Frase 2 - Transição suave */}
+<div className="stage" style={{ opacity: stage === 6 ? 1 : 0, zIndex: stage === 6 ? 5 : 1, pointerEvents: "none" }}>
+  <h1 className="ft" style={{ fontSize: "clamp(1.6rem, 5vw, 2.4rem)", margin: 0, lineHeight: 1.4 }}>
+    Agora vamos começar<br />o que realmente importa...
+  </h1>
+</div>
+
+{/* Stage 7: O Check-in de Saúde Mental */}
+<div className="stage" style={{ opacity: stage === 7 ? 1 : 0, zIndex: stage === 7 ? 3 : 1, justifyContent: "flex-start", paddingTop: 80, alignItems: "stretch", textAlign: "left", pointerEvents: stage === 7 ? "auto" : "none" }}>
+  <div className="max-w-100 w-full mx-auto pb-8 text-center">
+    <h1 className="ft" style={{ fontSize: "2.2rem", margin: 0 }}>Como você está se sentindo hoje?</h1>
+    <div className="fl"><span className="fl-line" /><span className="fl-dot" /><span className="fl-line" /></div>
+    <p className="fs" style={{ marginBottom: 40 }}>Check-in diário de bem-estar</p>
+
+    {/* Grid de Emojis elegantes baseado nos seus opt-cards */}
+    <div className="flex flex-col" style={{ gap: 12, maxWidth: "400px", margin: "0 auto" }}>
+      {[
+        { label: "Feliz e motivado(a)", emoji: "😊", valor: "feliz" },
+        { label: "Cansado(a) / Exausto(a)", emoji: "🥱", valor: "cansado" },
+        { label: "Triste ou desanimado(a)", emoji: "😢", valor: "triste" },
+        { label: "Ansioso(a) / Preocupado(a)", emoji: "😰", valor: "ansioso" },
+        { label: "Sobrecarregado(a)", emoji: "🤯", valor: "sobrecarregado" }
+      ].map((item) => (
+        <button
+          key={item.valor}
+          className="opt-card"
+          onClick={() => {
+            console.log("Humor selecionado:", item.valor);
+            // Aqui você envia pro backend (/saude) e pula para a Home do App!
+            setStage(8); 
+          }}
+          type="button"
+        >
+          <span style={{ fontSize: "1.3rem" }}>{item.emoji}</span>
+          <span className="opt-text" style={{ fontSize: "0.95rem" }}>{item.label}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+{/* Stage 8: Dashboard Principal (A Home do Ecossistema) */}
+<div className="stage" style={{ opacity: stage === 8 ? 1 : 0, zIndex: stage === 8 ? 3 : 1, justifyContent: "flex-start", paddingTop: 40, alignItems: "stretch", textAlign: "left", pointerEvents: stage === 8 ? "auto" : "none" }}>
+  <div className="max-w-180 w-full mx-auto pb-8">
+    {/* Cabeçalho da Home */}
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, borderBottom: "1px solid rgba(200,180,160,0.15)", paddingBottom: 16 }}>
+      <div>
+        <span className="fs">Olá, {form.nome || "Participante"}, seja bem-vindo(a)!</span>
+        <h2 className="ft" style={{ fontSize: "1.6rem", margin: "4px 0 0" }}>Seu Ecossistema Vitta Carreira</h2>
+      </div>
+    </div>
+
+    {/* Caixa de Mensagem do Agente de IA */}
+    <div style={{ background: "rgba(196,146,154,0.06)", border: "1px dashed #c4929a", borderRadius: 12, padding: 20, marginBottom: 24 }}>
+      <p className="lbl" style={{ color: "#c4929a", margin: 0 }}>🐶 Agente Vitta diz:</p>
+      <p style={{ color: "#e8e0d5", fontFamily: "Inter, sans-serif", fontSize: "0.9rem", marginTop: 8, lineHeight: 1.5 }}>
+        Identifiquei que você está buscando <strong>{form.objetivo}</strong> na área de <strong>{form.area || "Tecnologia"}</strong>. Preparamos um plano focado nos 30% que faltam para você conquistar seus objetivos. Lembre-se de dar uma pausa se precisar!
+      </p>
+    </div>
+
+    {/* Grid de Recursos (Vagas 70% + Trilhas) */}
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
+      {/* Bloco Empregabilidade */}
+      <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(200,180,160,0.15)", borderRadius: 12, padding: 20 }}>
+        <span className="fs">Oportunidades</span>
+        <h3 className="ft" style={{ fontSize: "1.3rem", margin: "6px 0 12px" }}>Vagas Compatíveis</h3>
+        <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 8, padding: 12, marginBottom: 12 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+            <span style={{ fontSize: "0.85rem", color: "#e8e0d5", fontWeight: "bold" }}>Dev Front-end Júnior</span>
+            <span style={{ fontSize: "0.85rem", color: "#c4929a" }}>70% Match</span>
+          </div>
+          {/* Barra de Progresso simulando o Gap */}
+          <div style={{ width: "100%", height: 6, background: "rgba(255,255,255,0.1)", borderRadius: 3 }}>
+            <div style={{ width: "70%", height: "100%", background: "#c4929a", borderRadius: 3 }} />
+          </div>
+          <p style={{ fontSize: "0.75rem", color: "#c4b8a8", marginTop: 8 }}>Falta: Tailwind CSS e consumo de APIs externas.</p>
+        </div>
+      </div>
+
+      {/* Bloco Formações */}
+      <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(200,180,160,0.15)", borderRadius: 12, padding: 20 }}>
+        <span className="fs">Próximo Passo</span>
+        <h3 className="ft" style={{ fontSize: "1.3rem", margin: "6px 0 12px" }}>Trilha Recomendada</h3>
+        <p style={{ fontSize: "0.85rem", color: "#e8e0d5", marginBottom: 12 }}>
+          Para fechar os seus 30% de gap nesta vaga, recomendamos iniciar:
+        </p>
+        <button type="button" style={{ display: "block", width: "100%", background: "rgba(196,146,154,0.15)", color: "#e8e0d5", padding: 10, borderRadius: 8, textDecoration: "none", textAlign: "center", fontSize: "0.8rem", border: "1px solid #c4929a", cursor: "pointer" }}>
+          🚀 Iniciar Curso Gratuito Google Cloud / Alura
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   );
 }

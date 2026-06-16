@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getListaAreas, getAtuacoesPorArea } from "./lib/data/areasAtuacao";
-import { LOCALIZACAO_DATA } from "./lib/data/localizacoes";
-import { WavesBackground } from "./components/onboarding/WavesBackground";
+import { getListaAreas, getAtuacoesPorArea } from "./areasAtuacao";
+import { LOCALIZACAO_DATA } from "./localizacoes";
+import { WavesBackground } from "./WavesBackground";
 
   const getLocationData = (form: any) => {
   const continenteAtual = form.continente as keyof typeof LOCALIZACAO_DATA;

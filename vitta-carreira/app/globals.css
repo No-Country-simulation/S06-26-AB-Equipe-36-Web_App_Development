@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------
+   1. TOKENS DE DESIGN (paleta extraída do protótipo da Agatha)
+--------------------------------------------------- */
+@theme {
+  --color-background: #1a1814;
+  --color-foreground: #e8e0d5;
+  --color-foreground-muted: #c4b8a8;
+  --color-label: #e8dcc8;
+  --color-accent: #c4929a;
+
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---------------------------------------------------
+   2. CLASSES REUTILIZÁVEIS (substituem o <style> inline
+      que existia dentro do componente no protótipo Vite)
+--------------------------------------------------- */
+@layer components {
+  .text-display {
+    @apply font-serif italic font-light tracking-wide text-foreground;
+  }
+
+  .text-eyebrow {
+    @apply font-sans tracking-[0.28em] text-label uppercase text-[0.65rem];
+  }
+
+  .divider {
+    @apply flex items-center justify-center gap-2 my-3.5 mx-auto;
+  }
+  .divider-line {
+    @apply w-4 h-px bg-label;
+  }
+  .divider-dot {
+    @apply w-1 h-1 rounded-full bg-accent;
+  }
+
+  .field-label {
+    @apply block font-sans text-[0.7rem] tracking-wider text-label uppercase mb-1.5;
+  }
+
+  .field-input {
+    @apply w-full bg-white/4 border border-foreground-muted/20 rounded-xl px-3.5 py-3
+      text-foreground font-sans text-sm outline-none transition-colors duration-200
+      focus:border-accent disabled:opacity-40 disabled:cursor-not-allowed
+      placeholder:text-foreground-muted;
+  }
+  .field-input option {
+    background: #5a4a3a;
+    color: var(--color-foreground);
+  }
+
+  .btn-primary {
+    @apply w-full bg-accent/16 border border-accent text-foreground rounded-xl py-3.5
+      font-sans text-sm tracking-wider uppercase cursor-pointer transition-colors
+      duration-200 hover:bg-accent/28;
+  }
+
+  .option-card {
+    @apply flex items-center gap-3 w-full bg-white/4 border border-foreground-muted/20
+      rounded-xl p-3.5 cursor-pointer transition-all duration-200 text-inherit text-left
+      hover:border-foreground-muted/40;
+  }
+  .option-card.is-active {
+    @apply border-accent bg-accent/8;
+  }
+  .option-label {
+    @apply font-sans text-sm text-foreground;
+  }
+
+  .stage-panel {
+    @apply absolute inset-0 flex flex-col items-center justify-center text-center
+      px-8 overflow-y-auto transition-opacity duration-1000 ease-in-out;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------
+   3. Customização do datepicker nativo
+   (pseudo-elementos do navegador não têm utilitário Tailwind)
+--------------------------------------------------- */
+input[type="date"] {
+  color-scheme: dark;
+}
+.field-input::-webkit-calendar-picker-indicator {
+  filter: invert(93%) sepia(8%) saturate(541%) hue-rotate(323%) brightness(95%) contrast(93%);
+  cursor: pointer;
+}
+::-webkit-datetime-edit-text,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-year-field {
+  color: var(--color-foreground);
 }

@@ -67,6 +67,11 @@ body {
       duration-200 hover:bg-accent/28;
   }
 
+  .feature-card {
+    @apply bg-white/4 border border-foreground-muted/20 rounded-xl p-6 text-left
+      transition-colors duration-200 hover:border-accent/50;
+  }
+
   .option-card {
     @apply flex items-center gap-3 w-full bg-white/4 border border-foreground-muted/20
       rounded-xl p-3.5 cursor-pointer transition-all duration-200 text-inherit text-left

@@ -28,6 +28,7 @@ export function WavesBackground() {
     let height = 0;
     let animationFrameId: number;
     let time = 0;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const resize = () => {
       width = window.innerWidth;
@@ -53,7 +54,7 @@ export function WavesBackground() {
     ];
 
     const render = () => {
-      time += 0.005;
+      time += prefersReducedMotion ? 0 : 0.005;
 
       const cx = width / 2 + Math.sin(time * 0.4) * width * 0.015;
       const cy = height / 2 + Math.cos(time * 0.3) * height * 0.015;
@@ -87,7 +88,9 @@ export function WavesBackground() {
         ctx.fillRect(0, 0, width, height);
       });
 
-      animationFrameId = requestAnimationFrame(render);
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
     window.addEventListener("resize", resize);
@@ -103,7 +106,7 @@ export function WavesBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+      className="pointer-events-none fixed inset-0 -z-10 h-full w-full"
     />
   );
 }

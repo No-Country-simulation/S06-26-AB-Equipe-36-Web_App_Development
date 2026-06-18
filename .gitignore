@@ -1,0 +1,34 @@
+# Variáveis de ambiente — NUNCA subir
+*.env
+.env.local
+.env.*.local
+server/.env
+
+# Node
+client/node_modules/
+client/dist/
+client/.vite/
+
+# Java/Maven
+server/target/
+*.class
+*.jar
+*.war
+HELP.md
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Dataset grande — só os pequenos vão pro Git
+data/tensor_mobilidade.csv
+data/tensor_sequencias.csv
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Ignorar pastas de automação e logs de modernização
+.github/modernize/

@@ -1,0 +1,47 @@
+{
+  "usuarioId": "usr_982347293",
+  "mentoresDisponiveis": [
+    {
+      "mentorId": "mnt_001",
+      "nome": "Cássia Santos",
+      "especialidades": ["Design de Interface", "Prototipagem no Figma", "UX Research"],
+      "biografia": "Líder de Produto com foco em design focado no usuário e fluxos de navegação eficientes.",
+      "disponibilidade": [
+        {
+          "data": "2026-06-15",
+          "horarios": ["14:00", "15:30", "17:00"]
+        },
+        {
+          "data": "2026-06-17",
+          "horarios": ["09:00", "10:30"]
+        }
+      ]
+    },
+    {
+      "mentorId": "mnt_002",
+      "nome": "Melissa Rocha",
+      "especialidades": ["Arquitetura de Softwares", "Modelagem de Bancos de Dados", "Segurança JWT"],
+      "biografia": "Engenheira de Software focada em infraestrutura estável, APIs robustas e regras de negócio complexas.",
+      "disponibilidade": [
+        {
+          "data": "2026-06-16",
+          "horarios": ["15:00", "16:30"]
+        },
+        {
+          "data": "2026-06-18",
+          "horarios": ["14:00", "16:00", "17:30"]
+        }
+      ]
+    }
+  ],
+  "agendamentosAtivos": [
+    {
+      "agendamentoId": "agd_55432",
+      "mentorNome": "Cássia Santos",
+      "data": "2026-06-12",
+      "horario": "18:00",
+      "status": "confirmado",
+      "linkReuniao": "https://meet.google.com/abc-defg-hij"
+    }
+  ]
+}

@@ -18,6 +18,13 @@ CREATE TABLE perfis (
     nome_completo VARCHAR(255) NOT NULL,
     biografia TEXT,
     competencias TEXT[],
+    genero VARCHAR(50),
+    data_nascimento DATE,
+    escolaridade VARCHAR(100),
+    localizacao VARCHAR(150),
+    nivel_experiencia VARCHAR(50),
+    area_atuacao VARCHAR(100),
+    objetivo_profissional VARCHAR(255),
     CONSTRAINT fk_perfil_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 

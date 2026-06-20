@@ -1,0 +1,12 @@
+{
+  "onboarding": {
+    "welcome": "Bem-vindo ao App BiT!",
+    "description": "Seu Web App de Orientação Pessoal.",
+    "next_button": "Próximo Passo"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "loading": "Carregando..."
+  }
+}

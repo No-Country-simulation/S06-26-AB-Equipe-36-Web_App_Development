@@ -1,0 +1,46 @@
+{
+  "usuarioId": "usr_982347293",
+  "statusAtual": {
+    "ultimoHumor": "estavel",
+    "nivelEstresseAtual": "moderado",
+    "alertaAtivo": false,
+    "mensagemInsight": "Você manteve uma rotina de sono consistente nos últimos 3 dias. Isso ajudou a reduzir seu nível de estresse relatado no período da tarde."
+  },
+  "historicoSemanal": [
+    {
+      "data": "2026-06-08",
+      "humor": "radiante",
+      "horasSono": 7.5,
+      "nivelEstresse": "baixo"
+    },
+    {
+      "data": "2026-06-09",
+      "humor": "ansioso",
+      "horasSono": 5.0,
+      "nivelEstresse": "alto"
+    },
+    {
+      "data": "2026-06-10",
+      "humor": "estavel",
+      "horasSono": 8.0,
+      "nivelEstresse": "baixo"
+    },
+    {
+      "data": "2026-06-11",
+      "humor": "cansado",
+      "horasSono": 6.0,
+      "nivelEstresse": "moderado"
+    },
+    {
+      "data": "2026-06-12",
+      "humor": "estavel",
+      "horasSono": 7.5,
+      "nivelEstresse": "moderado"
+    }
+  ],
+  "metricasGerais": {
+    "mediaSonoSemanal": 6.8,
+    "humorPredominante": "estavel",
+    "totalLogsRegistrados": 14
+  }
+}

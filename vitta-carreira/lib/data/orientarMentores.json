@@ -1,0 +1,103 @@
+{
+  "categorias": ["Tecnologia", "Design", "Negócios", "Carreira", "Bem-estar"],
+  "mentores": [
+    {
+      "id": "m1",
+      "nome": "Ana Paula Ferreira",
+      "iniciais": "AP",
+      "cor": "#c4929a",
+      "titulo": "Engenheira de Software Sênior",
+      "empresa": "Nubank",
+      "categoria": "Tecnologia",
+      "especialidades": ["React", "Next.js", "Carreira em Tech", "Primeira vaga"],
+      "bio": "8 anos de experiência em front-end. Passei por bootcamp, fui rejeitada em 40 vagas antes da primeira contratação — e aprendi exatamente o que faz a diferença.",
+      "avaliacao": 4.9,
+      "sessoes": 127,
+      "disponivel": true,
+      "horarios": [
+        { "data": "2026-06-23", "horario": "09:00", "disponivel": true },
+        { "data": "2026-06-23", "horario": "14:00", "disponivel": false },
+        { "data": "2026-06-24", "horario": "10:00", "disponivel": true },
+        { "data": "2026-06-25", "horario": "16:00", "disponivel": true }
+      ]
+    },
+    {
+      "id": "m2",
+      "nome": "Rafael Souza",
+      "iniciais": "RS",
+      "cor": "#8a9ec4",
+      "titulo": "Product Designer",
+      "empresa": "iFood",
+      "categoria": "Design",
+      "especialidades": ["Figma", "UX Research", "Portfólio", "Transição de carreira"],
+      "bio": "Migrei da arquitetura pro design de produto em 18 meses. Hoje ajudo quem quer fazer a mesma transição sem perder tempo com o que não importa.",
+      "avaliacao": 4.8,
+      "sessoes": 89,
+      "disponivel": true,
+      "horarios": [
+        { "data": "2026-06-23", "horario": "11:00", "disponivel": true },
+        { "data": "2026-06-24", "horario": "09:00", "disponivel": true },
+        { "data": "2026-06-24", "horario": "15:00", "disponivel": false },
+        { "data": "2026-06-26", "horario": "10:00", "disponivel": true }
+      ]
+    },
+    {
+      "id": "m3",
+      "nome": "Carla Mendes",
+      "iniciais": "CM",
+      "cor": "#9ac4a0",
+      "titulo": "Head of People & Culture",
+      "empresa": "Conta Simples",
+      "categoria": "Carreira",
+      "especialidades": ["Entrevistas", "LinkedIn", "Currículo", "Negociação salarial"],
+      "bio": "Já entrevistei mais de 2000 candidatos em 12 anos de RH. Sei exatamente o que os recrutadores procuram — e o que descarta um perfil em 30 segundos.",
+      "avaliacao": 5.0,
+      "sessoes": 214,
+      "disponivel": false,
+      "horarios": [
+        { "data": "2026-06-27", "horario": "09:00", "disponivel": true },
+        { "data": "2026-06-27", "horario": "14:00", "disponivel": true },
+        { "data": "2026-06-28", "horario": "11:00", "disponivel": true }
+      ]
+    },
+    {
+      "id": "m4",
+      "nome": "Bruno Lima",
+      "iniciais": "BL",
+      "cor": "#c4b892",
+      "titulo": "Fundador & CEO",
+      "empresa": "StartupBR",
+      "categoria": "Negócios",
+      "especialidades": ["Empreendedorismo", "Validação de ideias", "Pitch", "Networking"],
+      "bio": "Fundei 3 startups, uma faliu, uma vendemos, uma ainda está de pé. Aprendi mais com os erros do que com os acertos — e compartilho tudo isso.",
+      "avaliacao": 4.7,
+      "sessoes": 63,
+      "disponivel": true,
+      "horarios": [
+        { "data": "2026-06-23", "horario": "18:00", "disponivel": true },
+        { "data": "2026-06-25", "horario": "18:00", "disponivel": true },
+        { "data": "2026-06-26", "horario": "19:00", "disponivel": true }
+      ]
+    },
+    {
+      "id": "m5",
+      "nome": "Juliana Costa",
+      "iniciais": "JC",
+      "cor": "#c492b8",
+      "titulo": "Psicóloga Organizacional",
+      "empresa": "Autônoma",
+      "categoria": "Bem-estar",
+      "especialidades": ["Ansiedade profissional", "Síndrome do impostor", "Burnout", "Autoconhecimento"],
+      "bio": "Especialista em saúde mental no trabalho. Ajudo profissionais a entenderem o que está bloqueando seu avanço — muitas vezes não é falta de habilidade técnica.",
+      "avaliacao": 4.9,
+      "sessoes": 178,
+      "disponivel": true,
+      "horarios": [
+        { "data": "2026-06-23", "horario": "08:00", "disponivel": true },
+        { "data": "2026-06-24", "horario": "08:00", "disponivel": true },
+        { "data": "2026-06-25", "horario": "08:00", "disponivel": false },
+        { "data": "2026-06-26", "horario": "17:00", "disponivel": true }
+      ]
+    }
+  ]
+}

@@ -5,7 +5,6 @@
 import { useState, useEffect } from "react";
 import { getListaAreas, getAtuacoesPorArea } from "@/lib/data/areasAtuacao";
 import { LOCALIZACAO_DATA } from "@/lib/data/localizacoes";
-import { WavesBackground } from "./WavesBackground";
 
 const getLocationData = (form: any) => {
   const continenteAtual = form.continente as keyof typeof LOCALIZACAO_DATA;
@@ -88,8 +87,7 @@ export default function OnboardingFlow() {
   const atuacoesDisponiveis = getAtuacoesPorArea(form.area);
 
   return (
-    <div className="relative size-full overflow-hidden">
-      <WavesBackground />
+    <div className="relative z-10 size-full">
 
       {/* Stage 0: Bem-vindo */}
       <div className={`stage-panel pointer-events-none z-[5] ${stage === 0 ? "opacity-100" : "opacity-0"}`}>

@@ -1,0 +1,51 @@
+{
+  "usuario": {
+    "nome": "Leonardo",
+    "objetivo": "Buscar minha primeira vaga",
+    "area": "Tecnologia"
+  },
+  "checkIns": [
+    { "data": "2026-06-13", "humor": "feliz",           "emoji": "😊", "label": "Feliz e motivado" },
+    { "data": "2026-06-14", "humor": "ansioso",         "emoji": "😰", "label": "Ansioso" },
+    { "data": "2026-06-15", "humor": "cansado",         "emoji": "🥱", "label": "Cansado" },
+    { "data": "2026-06-16", "humor": "feliz",           "emoji": "😊", "label": "Feliz e motivado" },
+    { "data": "2026-06-17", "humor": "sobrecarregado",  "emoji": "🤯", "label": "Sobrecarregado" },
+    { "data": "2026-06-18", "humor": "feliz",           "emoji": "😊", "label": "Feliz e motivado" },
+    { "data": "2026-06-19", "humor": "triste",          "emoji": "😢", "label": "Triste" }
+  ],
+  "resumoSemana": {
+    "humorPredominante": "feliz",
+    "diasAtivos": 7,
+    "sequenciaAtual": 3,
+    "pontuacaoBemEstar": 68
+  },
+  "insights": [
+    {
+      "id": "i1",
+      "tipo": "alerta",
+      "emoji": "⚡",
+      "titulo": "Pico de ansiedade na segunda",
+      "descricao": "Você costuma registrar mais ansiedade no início da semana. Que tal reservar 10 min de respiração antes de abrir o computador?"
+    },
+    {
+      "id": "i2",
+      "tipo": "positivo",
+      "emoji": "🌟",
+      "titulo": "3 dias seguidos motivado!",
+      "descricao": "Sua melhor sequência do mês. O que está funcionando? Tente replicar essa rotina nos próximos dias."
+    },
+    {
+      "id": "i3",
+      "tipo": "dica",
+      "emoji": "🐶",
+      "titulo": "Agente Vitta sugere",
+      "descricao": "Nas semanas em que você registra bem-estar acima de 70, sua produtividade nos estudos sobe 40%. Hoje é um bom dia pra avançar na trilha."
+    }
+  ],
+  "historicoPontuacao": [
+    { "semana": "S1", "pontuacao": 45 },
+    { "semana": "S2", "pontuacao": 58 },
+    { "semana": "S3", "pontuacao": 52 },
+    { "semana": "S4", "pontuacao": 68 }
+  ]
+}

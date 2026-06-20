@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { WavesBackground } from "@/components/onboarding/WavesBackground";
 
 const FEATURES = [
   {
@@ -44,11 +43,9 @@ const STEPS = [
 
 export default function LandingPage() {
   return (
-    <main className="relative z-10 min-h-screen overflow-hidden text-foreground">
-      <WavesBackground />
-
+    <main className="relative z-10 min-h-screen text-foreground">
       {/* HERO */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
+      <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
         <div className="relative z-10 flex max-w-2xl flex-col items-center">
           <p className="text-eyebrow">Vitta Carreira</p>
 

@@ -1,30 +1,62 @@
 import dados from "@/lib/data/saudeDashboard.json";
 
+// Função matemática original que gera o degradê suave baseado puramente em tons ricos de café
+function saudeParaCor(valor: number): string {
+  const v = Math.min(100, Math.max(0, valor));
+  
+  if (v < 40) {
+    // Nota Baixa: Café Espresso forte, profundo e discreto
+    const t = v / 40;
+    const r = Math.round(50 + t * (100 - 50));
+    const g = Math.round(30 + t * (65 - 30));
+    const b = Math.round(15 + t * (35 - 15));
+    return `rgb(${r},${g},${b})`;
+  } else if (v < 70) {
+    // Nota Média: Caramelo → Grão de café torrado médio
+    const t = (v - 40) / 30;
+    const r = Math.round(100 + t * (180 - 100));
+    const g = Math.round(65 + t * (140 - 65));
+    const b = Math.round(35 + t * (90 - 35));
+    return `rgb(${r},${g},${b})`;
+  } else {
+    // Nota Alta: Transição para o Creme / Leite Vaporizado bem clarinho e iluminado
+    const t = (v - 70) / 30;
+    const r = Math.round(180 + t * (240 - 180));
+    const g = Math.round(140 + t * (230 - 140));
+    const b = Math.round(90 + t * (215 - 90));
+    return `rgb(${r},${g},${b})`;
+  }
+}
+
+// Mapeamentos estáticos adaptados para tons de café correspondentes
 const COR_HUMOR: Record<string, string> = {
-  feliz:          "text-orange-100",    // Creme clarinho
-  ansioso:        "text-yellow-100/55", // Amarelo Baunilha Pastel com opacidade fixa em 55% (Super elegante!)
-  cansado:        "text-blue-300",      // Neutro de descanso
+  feliz:          "text-[rgb(240,230,215)]", // Creme
+  ansioso:        "text-[rgb(156,107,58)]",  // Caramelo
+  cansado:        "text-blue-300",           // Neutro de descanso
   triste:         "text-blue-400",
-  sobrecarregado: "text-rose-400",     // Vinho suave
+  sobrecarregado: "text-[rgb(70,45,25)]",    // Café Escuro
 };
 
 const BG_TIPO: Record<string, string> = {
-  alerta:   "border-yellow-100/30 bg-yellow-100/5",   // Caixa de aviso discreta
-  positivo: "border-orange-100/20 bg-orange-100/4",  // Creme claro para destaques
-  dica:     "border-accent/40 bg-accent/6",          // Mantém o teu rosa antigo elegante original
+  alerta:   "border-[rgb(156,107,58)]/30 bg-[rgb(156,107,58)]/5", // Avisos em Caramelo
+  positivo: "border-[rgb(240,230,215)]/20 bg-[rgb(240,230,215)]/4", // Destaques em Creme
+  dica:     "border-accent/40 bg-accent/6",                       // Mantém o rosa antigo do projeto
 };
 
 const MAX_PONTUACAO = 100;
 
-function BarraProgresso({ valor, max = MAX_PONTUACAO, cor = "bg-accent" }: {
+function BarraProgresso({ valor, max = MAX_PONTUACAO, cor }: {
   valor: number; max?: number; cor?: string;
 }) {
   const pct = Math.min(100, Math.round((valor / max) * 100));
   return (
     <div className="h-2 w-full rounded-full bg-white/10">
       <div
-        className={`h-full rounded-full ${cor} transition-all duration-700`}
-        style={{ width: `${pct}%` }}
+        className="h-full rounded-full transition-all duration-700"
+        style={{ 
+          width: `${pct}%`,
+          backgroundColor: cor || saudeParaCor(valor) // Se não passar cor fixa, usa a matemática do café
+        }}
       />
     </div>
   );
@@ -34,13 +66,7 @@ export default function SaudeDashboard() {
   const { resumoSemana, checkIns, insights, historicoPontuacao } = dados;
   const pontuacao = resumoSemana.pontuacaoBemEstar;
   
-  // Cores aplicadas ao Índice Principal (Número e Barra horizontal)
-  // Ajustado o texto para /55 e a barra para /55 para uma consistência perfeita na página
-  const corPontuacao =
-    pontuacao >= 70 ? "text-orange-100" : pontuacao >= 45 ? "text-yellow-100/55" : "text-rose-500";
-
-  const corBarraComponente = 
-    pontuacao >= 70 ? "bg-orange-100" : pontuacao >= 45 ? "bg-yellow-100/55" : "bg-rose-900/80";
+  const corDinamicaEstilo = saudeParaCor(pontuacao);
 
   return (
     <div className="relative z-10 min-h-screen text-foreground">
@@ -57,7 +83,8 @@ export default function SaudeDashboard() {
         {/* cards de resumo */}
         <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
           <div className="feature-card text-center">
-            <p className={`text-[2rem] font-bold ${corPontuacao}`}>{pontuacao}</p>
+            {/* O número agora recebe a cor exata do café calculada dinamicamente */}
+            <p className="text-[2rem] font-bold" style={{ color: corDinamicaEstilo }}>{pontuacao}</p>
             <p className="field-label mt-1 text-center">Bem-estar</p>
           </div>
           <div className="feature-card text-center">
@@ -80,14 +107,11 @@ export default function SaudeDashboard() {
         <div className="feature-card mb-6">
           <div className="mb-3 flex items-center justify-between">
             <span className="field-label">Índice de bem-estar da semana</span>
-            <span className={`font-sans text-sm font-bold ${corPontuacao}`}>
+            <span className="font-sans text-sm font-bold" style={{ color: corDinamicaEstilo }}>
               {pontuacao}/{MAX_PONTUACAO}
             </span>
           </div>
-          <BarraProgresso
-            valor={pontuacao}
-            cor={corBarraComponente}
-          />
+          <BarraProgresso valor={pontuacao} />
         </div>
 
         {/* check-ins da semana */}
@@ -119,19 +143,15 @@ export default function SaudeDashboard() {
             {historicoPontuacao.map((s) => {
               const altura = Math.max(8, Math.round((s.pontuacao / MAX_PONTUACAO) * 96));
               
-              // Modificado: O estado médio agora aplica o Amarelo Pastel a 55% de opacidade (bg-yellow-100/55)
-              const cor = s.pontuacao >= 75 
-                  ? "bg-orange-100"        // Bom/Ótimo: Creme Iluminado
-                  : s.pontuacao >= 45 
-                  ? "bg-yellow-100/55"    // Regular/Atenção: Baunilha Pastel translúcido a 55%
-                  : "bg-rose-900/80";     // Crítico: Vinho / Bordô profundo
-              
               return (
                 <div key={s.semana} className="flex flex-1 flex-col items-center gap-1">
                   <span className="font-sans text-[0.7rem] text-foreground-muted">{s.pontuacao}</span>
                   <div
-                    className={`w-full rounded-t-md ${cor} transition-all duration-700`}
-                    style={{ height: `${altura}px` }}
+                    className="w-full rounded-t-md transition-all duration-700"
+                    style={{ 
+                      height: `${altura}px`,
+                      backgroundColor: saudeParaCor(s.pontuacao) // Cada barra do gráfico gera a sua cor de café correspondente
+                    }}
                   />
                   <span className="font-sans text-[0.7rem] text-foreground-muted">{s.semana}</span>
                 </div>

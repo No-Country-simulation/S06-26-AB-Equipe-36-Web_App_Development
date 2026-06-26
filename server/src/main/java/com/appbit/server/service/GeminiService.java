@@ -1,4 +1,4 @@
-package com.appbit.server.services;
+package com.appbit.server.service;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;

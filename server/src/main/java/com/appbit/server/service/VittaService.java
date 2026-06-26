@@ -1,4 +1,4 @@
-package com.appbit.server.services;
+package com.appbit.server.service;
 import com.appbit.server.dto.MoodAnalysisDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,12 +1,9 @@
 package com.appbit.server.controller;
 import com.appbit.server.dto.*;
-import com.appbit.server.entity.LogSaude;
-import com.appbit.server.services.VittaService;
+import com.appbit.server.service.VittaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/saude")

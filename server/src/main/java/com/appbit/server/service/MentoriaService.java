@@ -1,4 +1,4 @@
-package com.appbit.server.services;
+package com.appbit.server.service;
 
 import com.appbit.server.dto.AgendamentoRequestDTO;
 import com.appbit.server.dto.AgendamentoResponseDTO;

@@ -87,18 +87,18 @@ export default function OnboardingFlow() {
   const atuacoesDisponiveis = getAtuacoesPorArea(form.area);
 
   return (
-    <div className="relative z-10 size-full">
+    <div className="relative z-10 size-full text-foreground">
 
       {/* Stage 0: Bem-vindo */}
       <div className={`stage-panel pointer-events-none z-[5] ${stage === 0 ? "opacity-100" : "opacity-0"}`}>
-        <h1 className="text-display m-0 text-[clamp(2.8rem,8vw,4.5rem)]">Bem-vindo</h1>
+        <h1 className="text-display m-0 text-[clamp(2.8rem,8vw,4.5rem)] text-foreground">Bem-vindo</h1>
         <div className="divider"><span className="divider-line" /><span className="divider-dot" /><span className="divider-line" /></div>
-        <p className="text-eyebrow">Vitta Carreira</p>
+        <p className="text-eyebrow text-foreground">Vitta Carreira</p>
       </div>
 
       {/* Stage 1: Boas-vindas */}
       <div className={`stage-panel pointer-events-none z-[4] ${stage === 1 ? "opacity-100" : "opacity-0"}`}>
-        <h1 className="text-display m-0 text-[clamp(1.6rem,5.5vw,2.4rem)] leading-[1.4]">
+        <h1 className="text-display m-0 text-[clamp(1.6rem,5.5vw,2.4rem)] leading-[1.4] text-foreground">
           Primeiro vamos começar<br />com o seu cadastro
         </h1>
       </div>
@@ -111,28 +111,28 @@ export default function OnboardingFlow() {
       >
         <div className="max-w-100 w-full mx-auto pb-8">
           <div className="text-center mb-8">
-            <h1 className="text-display m-0 text-[1.9rem]">Criar conta</h1>
+            <h1 className="text-display m-0 text-[1.9rem] text-foreground">Criar conta</h1>
             <div className="divider"><span className="divider-line" /><span className="divider-dot" /><span className="divider-line" /></div>
-            <p className="text-eyebrow">Etapa 1 de 3 · Dados pessoais</p>
+            <p className="text-eyebrow text-foreground">Etapa 1 de 3 · Dados pessoais</p>
           </div>
 
           <div className="flex flex-col gap-4">
             <div>
-              <label className="field-label" htmlFor="nome">Nome completo</label>
-              <input id="nome" className="field-input" type="text" placeholder="Seu nome" value={form.nome} onChange={handleChange("nome")} />
+              <label className="field-label text-foreground" htmlFor="nome">Nome completo</label>
+              <input id="nome" className="field-input text-foreground" type="text" placeholder="Seu nome" value={form.nome} onChange={handleChange("nome")} />
             </div>
             <div>
-              <label className="field-label" htmlFor="email">E-mail</label>
-              <input id="email" className="field-input" type="email" placeholder="seu@email.com" value={form.email} onChange={handleChange("email")} />
+              <label className="field-label text-foreground" htmlFor="email">E-mail</label>
+              <input id="email" className="field-input text-foreground" type="email" placeholder="seu@email.com" value={form.email} onChange={handleChange("email")} />
             </div>
             <div className="flex gap-3">
               <div className="flex-1">
-                <label className="field-label" htmlFor="nascimento">Data de nascimento</label>
-                <input id="nascimento" className="field-input" type="date" value={form.nascimento} onChange={handleChange("nascimento")} />
+                <label className="field-label text-foreground" htmlFor="nascimento">Data de nascimento</label>
+                <input id="nascimento" className="field-input text-foreground" type="date" value={form.nascimento} onChange={handleChange("nascimento")} />
               </div>
               <div className="flex-1">
-                <label className="field-label" htmlFor="genero">Gênero</label>
-                <select id="genero" className="field-input" value={form.genero} onChange={handleChange("genero")}>
+                <label className="field-label text-foreground" htmlFor="genero">Gênero</label>
+                <select id="genero" className="field-input text-foreground" value={form.genero} onChange={handleChange("genero")}>
                   <option value="">Selecionar</option>
                   <option value="feminino">Feminino</option>
                   <option value="masculino">Masculino</option>
@@ -141,8 +141,8 @@ export default function OnboardingFlow() {
               </div>
             </div>
             <div>
-              <label className="field-label" htmlFor="whatsapp">WhatsApp</label>
-              <input id="whatsapp" className="field-input" type="tel" placeholder="(00) 00000-0000" value={form.whatsapp} onChange={handleChange("whatsapp")} />
+              <label className="field-label text-foreground" htmlFor="whatsapp">WhatsApp</label>
+              <input id="whatsapp" className="field-input text-foreground" type="tel" placeholder="(00) 00000-0000" value={form.whatsapp} onChange={handleChange("whatsapp")} />
             </div>
           </div>
           <button className="btn-primary mt-8" onClick={() => setStage(3)}>Continuar</button>
@@ -157,15 +157,15 @@ export default function OnboardingFlow() {
       >
         <div className="max-w-100 w-full mx-auto pb-8">
           <div className="text-center mb-8">
-            <h1 className="text-display m-0 text-[1.9rem]">Onde você está?</h1>
+            <h1 className="text-display m-0 text-[1.9rem] text-foreground">Onde você está?</h1>
             <div className="divider"><span className="divider-line" /><span className="divider-dot" /><span className="divider-line" /></div>
-            <p className="text-eyebrow">Etapa 2 de 3 · Localização e Formação</p>
+            <p className="text-eyebrow text-foreground">Etapa 2 de 3 · Localização e Formação</p>
           </div>
 
           <div className="flex flex-col gap-4">
             <div>
-              <label htmlFor="escolaridade" className="field-label">Escolaridade</label>
-              <select id="escolaridade" className="field-input" value={form.escolaridade} onChange={handleChange("escolaridade")}>
+              <label htmlFor="escolaridade" className="field-label text-foreground">Escolaridade</label>
+              <select id="escolaridade" className="field-input text-foreground" value={form.escolaridade} onChange={handleChange("escolaridade")}>
                 <option value="">Selecionar</option>
                 <option value="medio">Ensino Médio</option>
                 <option value="tecnico">Ensino Técnico</option>
@@ -177,16 +177,16 @@ export default function OnboardingFlow() {
 
             <div className="flex gap-3">
               <div className="flex-1">
-                <label htmlFor="continente" className="field-label">Continente</label>
-                <select id="continente" className="field-input" value={form.continente} onChange={handleChange("continente")}>
+                <label htmlFor="continente" className="field-label text-foreground">Continente</label>
+                <select id="continente" className="field-input text-foreground" value={form.continente} onChange={handleChange("continente")}>
                   {continentesDisponiveis.map((c) => (
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
               </div>
               <div className="flex-1">
-                <label htmlFor="pais" className="field-label">País</label>
-                <select id="pais" className="field-input" value={form.pais} onChange={handleChange("pais")}>
+                <label htmlFor="pais" className="field-label text-foreground">País</label>
+                <select id="pais" className="field-input text-foreground" value={form.pais} onChange={handleChange("pais")}>
                   <option value="">Selecionar</option>
                   {paisesDisponiveis.map((p) => (
                     <option key={p} value={p}>{p}</option>
@@ -197,8 +197,8 @@ export default function OnboardingFlow() {
 
             <div className="flex gap-3">
               <div className="flex-1">
-                <label htmlFor="estado" className="field-label">Estado</label>
-                <select id="estado" className="field-input" value={form.estado} onChange={handleChange("estado")} disabled={!estadosDisponiveis.length}>
+                <label htmlFor="estado" className="field-label text-foreground">Estado</label>
+                <select id="estado" className="field-input text-foreground" value={form.estado} onChange={handleChange("estado")} disabled={!estadosDisponiveis.length}>
                   <option value="">Selecionar</option>
                   {estadosDisponiveis.map((estado) => (
                     <option key={estado} value={estado}>{estado}</option>
@@ -206,8 +206,8 @@ export default function OnboardingFlow() {
                 </select>
               </div>
               <div className="flex-1">
-                <label htmlFor="cidade" className="field-label">Cidade</label>
-                <select id="cidade" className="field-input" value={form.cidade} onChange={handleChange("cidade")} disabled={!cidadesDisponiveis.length}>
+                <label htmlFor="cidade" className="field-label text-foreground">Cidade</label>
+                <select id="cidade" className="field-input text-foreground" value={form.cidade} onChange={handleChange("cidade")} disabled={!cidadesDisponiveis.length}>
                   <option value="">Selecionar</option>
                   {cidadesDisponiveis.map((cidade: string) => (
                     <option key={cidade} value={cidade}>{cidade}</option>
@@ -228,15 +228,15 @@ export default function OnboardingFlow() {
       >
         <div className="max-w-100 w-full mx-auto pb-8">
           <div className="text-center mb-8">
-            <h1 className="text-display m-0 text-[1.9rem]">Sua jornada profissional</h1>
+            <h1 className="text-display m-0 text-[1.9rem] text-foreground">Sua jornada profissional</h1>
             <div className="divider"><span className="divider-line" /><span className="divider-dot" /><span className="divider-line" /></div>
-            <p className="text-eyebrow">Etapa 3 de 3 · Perfil Profissional</p>
+            <p className="text-eyebrow text-foreground">Etapa 3 de 3 · Perfil Profissional</p>
           </div>
 
           <div className="flex flex-col gap-4">
             <div>
-              <label className="field-label" htmlFor="experiencia">Nível de Experiência</label>
-              <select id="experiencia" className="field-input" value={form.experiencia} onChange={handleChange("experiencia")}>
+              <label className="field-label text-foreground" htmlFor="experiencia">Nível de Experiência</label>
+              <select id="experiencia" className="field-input text-foreground" value={form.experiencia} onChange={handleChange("experiencia")}>
                 <option value="sem-experiencia">Sem experiência</option>
                 <option value="estagiario">Estagiário</option>
                 <option value="trainee">Trainee</option>
@@ -246,8 +246,8 @@ export default function OnboardingFlow() {
               </select>
             </div>
             <div>
-              <label className="field-label" htmlFor="area">Área de Atuação</label>
-              <select id="area" className="field-input" value={form.area} onChange={handleChange("area")}>
+              <label className="field-label text-foreground" htmlFor="area">Área de Atuação</label>
+              <select id="area" className="field-input text-foreground" value={form.area} onChange={handleChange("area")}>
                 <option value="">Selecionar Área</option>
                 {listaAreasDisponiveis.map((a) => (
                   <option key={a} value={a}>{a}</option>
@@ -255,8 +255,8 @@ export default function OnboardingFlow() {
               </select>
             </div>
             <div>
-              <label className="field-label" htmlFor="atuacao">Especialidade / Função</label>
-              <select id="atuacao" className="field-input" value={form.atuacao} onChange={handleChange("atuacao")} disabled={!form.area}>
+              <label className="field-label text-foreground" htmlFor="atuacao">Especialidade / Função</label>
+              <select id="atuacao" className="field-input text-foreground" value={form.atuacao} onChange={handleChange("atuacao")} disabled={!form.area}>
                 <option value="">Selecionar Atuação</option>
                 {atuacoesDisponiveis.map((at) => (
                   <option key={at} value={at}>{at}</option>
@@ -265,19 +265,19 @@ export default function OnboardingFlow() {
             </div>
 
             <div>
-              <div className="field-label" id="objetivoLabel">O que você busca agora?</div>
+              <div className="field-label text-foreground" id="objetivoLabel">O que você busca agora?</div>
               <div className="flex flex-col gap-2.5 mt-2">
                 {["Estudar e me capacitar", "Definir meu caminho", "Buscar minha primeira vaga", "Mudar de emprego / área"].map((obj, idx) => {
                   const emojis = ["📘", "🧭", "💼", "🔄"];
                   return (
                     <button
                       key={obj}
-                      className={`option-card ${form.objetivo === obj ? "is-active" : ""}`}
+                      className={`option-card border-foreground-muted/20 bg-white/4 ${form.objetivo === obj ? "is-active !border-[#FFC0AD]" : ""}`}
                       onClick={() => handleSelectObjetivo(obj)}
                       type="button"
                     >
                       <span className="text-[1.1rem]">{emojis[idx]}</span>
-                      <span className="option-label">{obj}</span>
+                      <span className="option-label text-foreground">{obj}</span>
                     </button>
                   );
                 })}
@@ -289,57 +289,56 @@ export default function OnboardingFlow() {
         </div>
       </div>
 
-      {/* Stage 5: Frase 1 - Transição suave */}
+      {/* Stage 5: Transição suave */}
       <div className={`stage-panel pointer-events-none ${stage === 5 ? "opacity-100 z-[5]" : "opacity-0 z-[1]"}`}>
-        <h1 className="text-display m-0 text-[clamp(2rem,6vw,3rem)]">Muito bem!</h1>
-        <p className="text-eyebrow mt-3">Seu perfil foi criado com sucesso.</p>
+        <h1 className="text-display m-0 text-[clamp(2rem,6vw,3rem)] text-foreground">Muito bem!</h1>
+        <p className="text-eyebrow mt-3 text-foreground">Seu perfil foi criado com sucesso.</p>
       </div>
 
-      {/* Stage 6: Frase 2 - Transição suave */}
+      {/* Stage 6: Transição suave */}
       <div className={`stage-panel pointer-events-none ${stage === 6 ? "opacity-100 z-[5]" : "opacity-0 z-[1]"}`}>
-        <h1 className="text-display m-0 text-[clamp(1.6rem,5vw,2.4rem)] leading-[1.4]">
+        <h1 className="text-display m-0 text-[clamp(1.6rem,5vw,2.4rem)] leading-[1.4] text-foreground">
           Agora vamos começar<br />o que realmente importa...
         </h1>
       </div>
 
-      {/* Stage 7: O Check-in de Saúde Mental */}
+      {/* Stage 7: Check-in de Saúde Mental */}
       <div
         className={`stage-panel justify-start items-stretch text-left pt-20 ${
           stage === 7 ? "z-[3] opacity-100 pointer-events-auto" : "z-[1] opacity-0 pointer-events-none"
         }`}
       >
         <div className="max-w-100 w-full mx-auto pb-8 text-center">
-          <h1 className="text-display m-0 text-[2.2rem]">Como você está se sentindo hoje?</h1>
+          <h1 className="text-display m-0 text-[2.2rem] text-foreground">Como você está se sentindo hoje?</h1>
           <div className="divider"><span className="divider-line" /><span className="divider-dot" /><span className="divider-line" /></div>
-          <p className="text-eyebrow mb-10">Check-in diário de bem-estar</p>
+          <p className="text-eyebrow mb-10 text-foreground">Check-in diário de bem-estar</p>
 
           <div className="flex flex-col gap-3 max-w-100 mx-auto">
             {[
-              { label: "Feliz e motivado(a)", emoji: "😊", valor: "feliz" },
-              { label: "Cansado(a) / Exausto(a)", emoji: "🥱", valor: "cansado" },
-              { label: "Triste ou desanimado(a)", emoji: "😢", valor: "triste" },
-              { label: "Ansioso(a) / Preocupado(a)", emoji: "😰", valor: "ansioso" },
-              { label: "Sobrecarregado(a)", emoji: "🤯", valor: "sobrecarregado" },
+              { label: "Feliz e motivado(a)", emoji: "😊", valor: "feliz", cor: "text-[#B8D498]" },
+              { label: "Cansado(a) / Exausto(a)", emoji: "🥱", valor: "cansado", cor: "text-[#BFD8FF]" },
+              { label: "Triste ou desanimado(a)", emoji: "😢", valor: "triste", cor: "text-[#FFC0AD]" },
+              { label: "Ansioso(a) / Preocupado(a)", emoji: "😰", valor: "ansioso", cor: "text-[#FFE9AB]" },
+              { label: "Sobrecarregado(a)", emoji: "🤯", valor: "sobrecarregado", cor: "text-[#AD6842]" },
             ].map((item) => (
               <button
                 key={item.valor}
-                className="option-card"
+                className="option-card border-foreground-muted/20 bg-white/4"
                 onClick={() => {
                   console.log("Humor selecionado:", item.valor);
-                  // Aqui você envia pro backend (/saude) e pula para a Home do App!
                   setStage(8);
                 }}
                 type="button"
               >
-                <span className="text-[1.3rem]">{item.emoji}</span>
-                <span className="option-label text-[0.95rem]">{item.label}</span>
+                <span className={`text-[1.3rem] ${item.cor}`}>{item.emoji}</span>
+                <span className="option-label text-[0.95rem] text-foreground">{item.label}</span>
               </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Stage 8: Dashboard Principal (A Home do Ecossistema) */}
+      {/* Stage 8: Dashboard Principal / Home com Rosé Pastel nos Números e Destaques */}
       <div
         className={`stage-panel justify-start items-stretch text-left pt-10 ${
           stage === 8 ? "z-[3] opacity-100 pointer-events-auto" : "z-[1] opacity-0 pointer-events-none"
@@ -348,13 +347,13 @@ export default function OnboardingFlow() {
         <div className="max-w-180 w-full mx-auto pb-8">
           <div className="flex justify-between items-center mb-6 border-b border-foreground-muted/15 pb-4">
             <div>
-              <span className="text-eyebrow">Olá, {form.nome || "Participante"}, seja bem-vindo(a)!</span>
-              <h2 className="text-display text-[1.6rem] m-0 mt-1">Seu Ecossistema Vitta Carreira</h2>
+              <span className="text-eyebrow text-foreground">Olá, {form.nome || "Participante"}, seja bem-vindo(a)!</span>
+              <h2 className="text-display text-[1.6rem] m-0 mt-1 text-foreground">Seu Ecossistema Vitta Carreira</h2>
             </div>
           </div>
 
-          <div className="bg-accent/6 border border-dashed border-accent rounded-xl p-5 mb-6">
-            <p className="field-label text-accent m-0">🐶 Agente Vitta diz:</p>
+          <div className="bg-[#FFC0AD]/10 border border-dashed border-[#FFC0AD] rounded-xl p-5 mb-6">
+            <p className="field-label text-[#FFC0AD] font-bold m-0">🐶 Agente Vitta diz:</p>
             <p className="text-foreground font-sans text-sm mt-2 leading-relaxed">
               Identifiquei que você está buscando <strong>{form.objetivo}</strong> na área de{" "}
               <strong>{form.area || "Tecnologia"}</strong>. Preparamos um plano focado nos 30% que faltam
@@ -362,32 +361,32 @@ export default function OnboardingFlow() {
             </p>
           </div>
 
-          {/* grid-template-columns com auto-fit/minmax não tem utilitário Tailwind direto, mantido inline */}
           <div className="grid gap-5" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}>
-            <div className="bg-white/2 border border-foreground-muted/15 rounded-xl p-5">
-              <span className="text-eyebrow">Oportunidades</span>
-              <h3 className="text-display text-[1.3rem] my-1.5">Vagas Compatíveis</h3>
+            <div className="bg-white/4 border border-foreground-muted/15 rounded-xl p-5">
+              <span className="text-eyebrow text-foreground">Oportunidades</span>
+              <h3 className="text-display text-[1.3rem] my-1.5 text-foreground">Vagas Compatíveis</h3>
               <div className="bg-white/5 rounded-lg p-3 mb-3">
                 <div className="flex justify-between mb-1.5">
                   <span className="text-[0.85rem] text-foreground font-bold">Dev Front-end Júnior</span>
-                  <span className="text-[0.85rem] text-accent">70% Match</span>
+                  {/* Destaque num lindo Rosé Pastel vívido */}
+                  <span className="text-[0.85rem] font-bold text-[#FFC0AD]">70% Match</span>
                 </div>
                 <div className="w-full h-1.5 bg-white/10 rounded-full">
-                  <div className="w-[70%] h-full bg-accent rounded-full" />
+                  <div className="h-full bg-[#FFC0AD] rounded-full" />
                 </div>
-                <p className="text-[0.75rem] text-foreground-muted mt-2">Falta: Tailwind CSS e consumo de APIs externas.</p>
+                <p className="text-[0.75rem] text-foreground mt-2">Falta: Tailwind CSS e consumo de APIs externas.</p>
               </div>
             </div>
 
-            <div className="bg-white/2 border border-foreground-muted/15 rounded-xl p-5">
-              <span className="text-eyebrow">Próximo Passo</span>
-              <h3 className="text-display text-[1.3rem] my-1.5">Trilha Recomendada</h3>
+            <div className="bg-white/4 border border-foreground-muted/15 rounded-xl p-5">
+              <span className="text-eyebrow text-foreground">Próximo Passo</span>
+              <h3 className="text-display text-[1.3rem] my-1.5 text-foreground">Trilha Recomendada</h3>
               <p className="text-[0.85rem] text-foreground mb-3">
                 Para fechar os seus 30% de gap nesta vaga, recomendamos iniciar:
               </p>
               <button
                 type="button"
-                className="block w-full bg-accent/15 text-foreground p-2.5 rounded-lg text-center text-[0.8rem] border border-accent cursor-pointer"
+                className="block w-full bg-[#FFC0AD]/15 text-foreground p-2.5 rounded-lg text-center text-[0.8rem] border border-[#FFC0AD] cursor-pointer hover:bg-[#FFC0AD]/25 transition-colors font-medium"
               >
                 🚀 Iniciar Curso Gratuito Google Cloud / Alura
               </button>

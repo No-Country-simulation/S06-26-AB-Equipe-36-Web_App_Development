@@ -47,13 +47,13 @@ export default function LandingPage() {
       {/* HERO */}
       <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
         <div className="relative z-10 flex max-w-2xl flex-col items-center">
-          <p className="text-eyebrow">Vitta Carreira</p>
+          <p className="text-eyebrow text-foreground">Vitta Carreira</p>
 
-          <h1 className="text-display mt-4 text-[clamp(2.2rem,6vw,3.6rem)] leading-[1.15]">
+          <h1 className="text-display mt-4 text-[clamp(2.2rem,6vw,3.6rem)] leading-[1.15] text-foreground">
             Sua carreira merece o mesmo cuidado que você dá ao seu bem-estar
           </h1>
 
-          <p className="mt-5 max-w-lg font-sans text-base text-foreground-muted">
+          <p className="mt-5 max-w-lg font-sans text-base text-foreground">
             A gente identifica o que falta entre você e a vaga certa — e cuida de quem está nessa jornada.
           </p>
 
@@ -63,18 +63,18 @@ export default function LandingPage() {
           >
             Começar agora
           </Link>
-          <p className="mt-3 font-sans text-xs text-foreground-muted">Cadastro em poucos minutos, sem cartão.</p>
+          <p className="mt-3 font-sans text-xs text-foreground">Cadastro em poucos minutos, sem cartão.</p>
 
-          {/* elemento-assinatura: o mesmo cartão de "match" que aparece dentro do produto */}
+          {/* elemento-assinatura */}
           <div className="mt-12 w-full max-w-sm rounded-xl border border-foreground-muted/20 bg-white/4 p-5 text-left backdrop-blur-sm">
             <div className="mb-1.5 flex justify-between">
               <span className="text-[0.85rem] font-bold text-foreground">Dev Front-end Júnior</span>
-              <span className="text-[0.85rem] text-accent">70% Match</span>
+              <span className="text-[0.85rem] font-bold text-[#B8D498]">70% Match</span>
             </div>
             <div className="h-1.5 w-full rounded-full bg-white/10">
-              <div className="h-full w-[70%] rounded-full bg-accent" />
+              <div className="h-full w-[70%] rounded-full bg-[#B8D498]" />
             </div>
-            <p className="mt-2 text-[0.75rem] text-foreground-muted">É assim que mostramos seu progresso real.</p>
+            <p className="mt-2 text-[0.75rem] text-foreground">É assim que mostramos seu progresso real.</p>
           </div>
         </div>
       </section>
@@ -83,20 +83,21 @@ export default function LandingPage() {
       <section className="border-t border-foreground-muted/10 px-6 py-20 text-center">
         <p className="mx-auto max-w-xl font-sans text-lg leading-relaxed text-foreground">
           Não prometemos vaga garantida. Mostramos o caminho real: o que você já tem, o que falta, e como fechar
-          esse gap com <span className="text-accent">trilhas, mentoria e cuidado</span> — sem achismo.
+          esse gap com <span className="text-foreground font-semibold">trilhas, mentoria e cuidado</span> — sem achismo.
         </p>
       </section>
 
       {/* FEATURES */}
       <section className="border-t border-foreground-muted/10 px-6 py-20">
         <div className="mx-auto max-w-5xl">
-          <p className="text-eyebrow text-center">O que você encontra aqui</p>
+          <p className="text-eyebrow text-center text-foreground font-bold">O que você encontra aqui</p>
+          
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.map((f) => (
               <div key={f.title} className="feature-card">
                 <span className="text-[1.4rem]">{f.emoji}</span>
-                <h3 className="text-display mt-3 text-[1.1rem]">{f.title}</h3>
-                <p className="mt-2 font-sans text-sm text-foreground-muted">{f.desc}</p>
+                <h3 className="text-display mt-3 text-[1.1rem] text-foreground font-bold">{f.title}</h3>
+                <p className="mt-2 font-sans text-sm text-foreground">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -106,14 +107,16 @@ export default function LandingPage() {
       {/* COMO FUNCIONA */}
       <section className="border-t border-foreground-muted/10 px-6 py-20">
         <div className="mx-auto max-w-3xl">
-          <p className="text-eyebrow text-center">Como funciona</p>
+          <p className="text-eyebrow text-center text-foreground font-bold">Como funciona</p>
+          
           <div className="mt-10 flex flex-col gap-8">
             {STEPS.map((s) => (
               <div key={s.n} className="flex items-start gap-5">
-                <span className="text-display text-accent text-[2.2rem] leading-none">{s.n}</span>
+                {/* Aplicado o tom Rosé (#FFC0AD) bem nítido nos números */}
+                <span className="text-display text-[#FFC0AD] text-[2.2rem] leading-none font-bold">{s.n}</span>
                 <div>
-                  <h3 className="text-display text-[1.2rem]">{s.title}</h3>
-                  <p className="mt-1 font-sans text-sm text-foreground-muted">{s.desc}</p>
+                  <h3 className="text-display text-[1.2rem] text-foreground font-bold">{s.title}</h3>
+                  <p className="mt-1 font-sans text-sm text-foreground">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -123,7 +126,7 @@ export default function LandingPage() {
 
       {/* CTA FINAL */}
       <section className="border-t border-foreground-muted/10 px-6 py-20 text-center">
-        <h2 className="text-display text-[clamp(1.6rem,4vw,2.2rem)]">Pronto pra começar?</h2>
+        <h2 className="text-display text-[clamp(1.6rem,4vw,2.2rem)] text-foreground font-bold">Pronto pra começar?</h2>
         <Link
           href="/cadastro"
           className="btn-primary mt-6 inline-block w-auto px-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
@@ -133,7 +136,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t border-foreground-muted/10 px-6 py-8 text-center">
-        <p className="font-sans text-xs text-foreground-muted">Vitta Carreira</p>
+        <p className="font-sans text-xs text-foreground">Vitta Carreira</p>
       </footer>
     </main>
   );

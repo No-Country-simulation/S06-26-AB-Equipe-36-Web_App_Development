@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "perfis")
@@ -19,7 +18,7 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "usuario_id",
             nullable = false,
@@ -30,15 +29,11 @@ public class Perfil {
     @Column(name = "nome_completo", nullable = false)
     private String nomeCompleto;
 
+    @Column(columnDefinition = "TEXT")
     private String biografia;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "perfil_competencias",
-            joinColumns = @JoinColumn(name = "perfil_id")
-    )
-    @Column(name = "competencia")
-    private List<String> competencias;
+    @Column(columnDefinition = "TEXT")
+    private String competencias;
 
     private String genero;
 

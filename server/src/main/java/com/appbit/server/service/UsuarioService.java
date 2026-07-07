@@ -54,6 +54,10 @@ public class UsuarioService {
 
     public AuthResponseDTO login(LoginRequestDTO dto) {
 
+
+        System.out.println("\n========== LOGIN SERVICE ==========");
+        System.out.println("Email: " + dto.email());
+
         Usuario usuario = usuarioRepository
                 .findByEmail(dto.email())
                 .orElseThrow(() ->

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -33,30 +34,48 @@ public class JwtFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
+        System.out.println("\n========== JWT FILTER ==========");
 
-        // Se não houver token, continua normalmente
+        String authHeader = request.getHeader("Authorization");
+        System.out.println("Authorization: " + authHeader);
+
+        // Não existe Authorization
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+
+            System.out.println("Nenhum Bearer Token encontrado.");
+
             filterChain.doFilter(request, response);
             return;
         }
 
         String token = authHeader.substring(7);
 
-        // Token inválido
-        if (!jwtService.tokenValido(token)) {
+        System.out.println("Token: " + token);
+
+        boolean tokenValido = jwtService.tokenValido(token);
+
+        System.out.println("Token válido: " + tokenValido);
+
+        if (!tokenValido) {
+
+            System.out.println("JWT inválido.");
+
             filterChain.doFilter(request, response);
             return;
         }
 
         String email = jwtService.extrairEmail(token);
 
-        // Evita autenticar novamente se já existir autenticação
+        System.out.println("Email extraído: " + email);
+
         if (email != null &&
                 SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails =
                     userDetailsService.loadUserByUsername(email);
+
+            System.out.println("Usuário encontrado: "
+                    + userDetails.getUsername());
 
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
@@ -66,13 +85,35 @@ public class JwtFilter extends OncePerRequestFilter {
                     );
 
             authentication.setDetails(
-                    new org.springframework.security.web.authentication.WebAuthenticationDetailsSource()
+                    new WebAuthenticationDetailsSource()
                             .buildDetails(request)
             );
 
+            // Salva autenticação no contexto do Spring Security
             SecurityContextHolder
                     .getContext()
                     .setAuthentication(authentication);
+
+            System.out.println("\n========== SECURITY CONTEXT ==========");
+            System.out.println("Authentication: "
+                    + SecurityContextHolder.getContext().getAuthentication());
+
+            System.out.println("Principal: "
+                    + SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .getPrincipal());
+
+            System.out.println("Authorities: "
+                    + SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .getAuthorities());
+
+            System.out.println("Authenticated: "
+                    + SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .isAuthenticated());
+
+            System.out.println("======================================\n");
         }
 
         filterChain.doFilter(request, response);

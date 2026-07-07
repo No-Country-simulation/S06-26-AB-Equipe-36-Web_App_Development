@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class PerfilService {
 
@@ -44,7 +47,7 @@ public class PerfilService {
                 .usuario(usuario)
                 .nomeCompleto(dto.nomeCompleto())
                 .biografia(dto.biografia())
-                .competencias(dto.competencias())
+                .competencias(String.join(",", dto.competencias()))
                 .genero(dto.genero())
                 .dataNascimento(dto.dataNascimento())
                 .escolaridade(dto.escolaridade())
@@ -84,7 +87,7 @@ public class PerfilService {
 
         perfil.setNomeCompleto(dto.nomeCompleto());
         perfil.setBiografia(dto.biografia());
-        perfil.setCompetencias(dto.competencias());
+        perfil.setCompetencias(String.join(",", dto.competencias()));
         perfil.setGenero(dto.genero());
         perfil.setDataNascimento(dto.dataNascimento());
         perfil.setEscolaridade(dto.escolaridade());
@@ -100,11 +103,18 @@ public class PerfilService {
 
     private PerfilResponseDTO converter(Perfil perfil) {
 
+        List<String> competencias = perfil.getCompetencias() == null
+                ? List.of()
+                : Arrays.stream(perfil.getCompetencias().split(","))
+                .map(String::trim)
+                .filter(s -> !s.isBlank())
+                .toList();
+
         return new PerfilResponseDTO(
                 perfil.getId(),
                 perfil.getNomeCompleto(),
                 perfil.getBiografia(),
-                perfil.getCompetencias(),
+                competencias,
                 perfil.getGenero(),
                 perfil.getDataNascimento(),
                 perfil.getEscolaridade(),
@@ -114,5 +124,4 @@ public class PerfilService {
                 perfil.getObjetivoProfissional()
         );
     }
-
 }

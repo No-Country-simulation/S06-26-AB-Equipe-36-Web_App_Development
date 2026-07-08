@@ -2,13 +2,7 @@ package com.appbit.server.dto;
 
 import java.util.List;
 
-public record MatchResponseDTO(
-
-        Integer aderencia,
-
-        List<String> lacunas,
-
-        String vaga,
+public record GeminiResponseDTO(
 
         String melhorTrilha,
 
@@ -16,4 +10,4 @@ public record MatchResponseDTO(
 
         List<String> planoEstudos
 
-){}
+) {}

@@ -2,6 +2,10 @@ package com.appbit.server.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "trilhas")
@@ -10,6 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = "competencias")
 public class Trilha {
 
     @Id
@@ -22,8 +27,15 @@ public class Trilha {
     @Column(columnDefinition = "TEXT")
     private String descricao;
 
-    @Column(columnDefinition = "TEXT")
-    private String competencias;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "trilha_competencias",
+            joinColumns = @JoinColumn(name = "trilha_id"),
+            inverseJoinColumns = @JoinColumn(name = "competencia_id")
+    )
+    @BatchSize(size = 20)
+    @Builder.Default
+    private Set<Competencia> competencias = new LinkedHashSet<>();
 
     @Column(nullable = false)
     private String nivel;

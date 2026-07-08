@@ -2,8 +2,11 @@ package com.appbit.server.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "perfis")
@@ -12,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = {"usuario", "competencias"})
 public class Perfil {
 
     @Id
@@ -32,8 +36,15 @@ public class Perfil {
     @Column(columnDefinition = "TEXT")
     private String biografia;
 
-    @Column(columnDefinition = "TEXT")
-    private String competencias;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "perfil_competencias",
+            joinColumns = @JoinColumn(name = "perfil_id"),
+            inverseJoinColumns = @JoinColumn(name = "competencia_id")
+    )
+    @BatchSize(size = 20)
+    @Builder.Default
+    private Set<Competencia> competencias = new LinkedHashSet<>();
 
     private String genero;
 

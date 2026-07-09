@@ -23,10 +23,15 @@ public class GapCompetenciaService {
     ) {
 
         return vagas.stream()
-                .map(vaga -> calcularGap(perfil, vaga))
+
+                .filter(v -> !v.getCompetencias().isEmpty())
+
+                .map(v -> calcularGap(perfil, v))
+
                 .max(Comparator.comparingInt(GapCompetenciaDTO::getAderencia))
+
                 .orElseThrow(() ->
-                        new RuntimeException("Nenhuma vaga encontrada."));
+                        new RuntimeException("Nenhuma vaga válida encontrada."));
     }
 
     /**
@@ -37,10 +42,25 @@ public class GapCompetenciaService {
             Vaga vaga
     ) {
 
+        System.out.println("\n==============================");
+        System.out.println("VAGA: " + vaga.getCargo());
+
+        System.out.println("Competências da vaga:");
+        vaga.getCompetencias().forEach(c ->
+                System.out.println("- " + c.getNome()));
+
+        System.out.println("\nCompetências do perfil:");
+        perfil.getCompetencias().forEach(c ->
+                System.out.println("- " + c.getNome()));
+
         Set<Competencia> faltantes =
                 new HashSet<>(vaga.getCompetencias());
 
         faltantes.removeAll(perfil.getCompetencias());
+
+        System.out.println("\nCompetências faltantes:");
+        faltantes.forEach(c ->
+                System.out.println("- " + c.getNome()));
 
         int totalCompetencias = vaga.getCompetencias().size();
 
@@ -52,6 +72,11 @@ public class GapCompetenciaService {
                 : (int) Math.round(
                 ((double) competenciasPossuidas / totalCompetencias) * 100
         );
+
+        System.out.println("\nTotal competências: " + totalCompetencias);
+        System.out.println("Possuídas: " + competenciasPossuidas);
+        System.out.println("Aderência: " + aderencia);
+        System.out.println("==============================");
 
         return GapCompetenciaDTO.builder()
                 .vaga(vaga.getCargo())

@@ -9,7 +9,7 @@ from sqlalchemy import create_engine, text
 # Padrão SQLAlchemy: 'postgresql://USUARIO:SENHA@localhost:PORTA/NOME_DO_BANCO'
 
 # Exemplo Local meu (Leo):
-DB_URL = 'postgresql://postgres:admin123@localhost:5433/appbit'
+DB_URL = ""
 
 # Caso precise alterar para o padrão de outro ambiente, descomente e ajuste a linha abaixo:
 # DB_URL = 'postgresql://postgres:postgres@localhost:5432/bit_db'
